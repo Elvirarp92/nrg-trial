@@ -1,13 +1,12 @@
-import SignInButton from '@/components/SignOutButton'
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
-export default function Home() {
-
+export default async function Home() {
+  const session = await getServerSession(authOptions)
   return (
     <div>
-      <main>
-        <h1>You are successfully logged in!</h1>
-        <SignInButton />
-      </main>
+      <h1>NRG Deal Manager</h1>
+      <p>Welcome, {session?.username}!</p>
     </div>
   );
 }
