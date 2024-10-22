@@ -1,5 +1,13 @@
 'use client'
 import { getSession, signOut } from 'next-auth/react'
+import { LogOut } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 
 async function handleLogout() {
   const session = await getSession()
@@ -19,5 +27,24 @@ async function handleLogout() {
 }
 
 export default function Component() {
-  return <button onClick={() => handleLogout()}>Sign out</button>
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <Button
+            className='h-7 w-7'
+            asChild
+            variant='ghost'
+            size='icon'
+            onClick={() => handleLogout()}
+          >
+            <LogOut />
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Log out</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
 }
