@@ -1,20 +1,18 @@
-import NextAuth, { AuthOptions } from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
+import NextAuth, { AuthOptions } from 'next-auth'
+import CredentialsProvider from 'next-auth/providers/credentials'
 
 const credentials = CredentialsProvider({
   name: 'Credentials',
   credentials: {
-    username: { label: "Username", type: "text" },
-    password: { label: "Password", type: "password" }
+    username: { label: 'Username', type: 'text' },
+    password: { label: 'Password', type: 'password' },
   },
   async authorize(credentials) {
-    const res: Response = await fetch(
-      `${process.env.API_URL}/auth/login/`, {
-        method: 'POST',
-        body: JSON.stringify(credentials), 
-        headers: { "Content-Type": "application/json" }
-      }
-    )
+    const res: Response = await fetch(`${process.env.API_URL}/auth/login/`, {
+      method: 'POST',
+      body: JSON.stringify(credentials),
+      headers: { 'Content-Type': 'application/json' },
+    })
 
     const user = await res.json()
 
@@ -22,13 +20,13 @@ const credentials = CredentialsProvider({
       return user
     }
     return null
-  }
+  },
 })
 
 const authOptions: AuthOptions = {
   providers: [credentials],
   session: {
-    strategy: "jwt"
+    strategy: 'jwt',
   },
   callbacks: {
     session({ session, token }) {
@@ -48,8 +46,8 @@ const authOptions: AuthOptions = {
       }
       return token
     },
-  }
-} 
+  },
+}
 
 const handler = NextAuth(authOptions)
 

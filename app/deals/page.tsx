@@ -1,73 +1,81 @@
-import fetchWithToken from "@/utils/fetchWithToken"
+import fetchWithToken from '@/utils/fetchWithToken'
 
 const tableHeaders = [
   {
     name: 'code',
-    label: 'Code'
+    label: 'Code',
   },
   {
     name: 'trade_date',
-    label: 'Trade date'
+    label: 'Trade date',
   },
   {
     name: 'status',
-    label: 'Status'
+    label: 'Status',
   },
   {
     name: 'proposed_to',
-    label: 'Proposed to'
+    label: 'Proposed to',
   },
   {
     name: 'sense',
-    label: 'Sense'
+    label: 'Sense',
   },
   {
     name: 'volume',
-    label: 'Volume'
+    label: 'Volume',
   },
   {
     name: 'measurement_unit',
-    label: 'Measurement unit'
+    label: 'Measurement unit',
   },
   {
     name: 'fixed_price',
-    label: 'Fixed price'
+    label: 'Fixed price',
   },
   {
     name: 'counterparty',
-    label: 'Counterparty'
+    label: 'Counterparty',
   },
   {
     name: 'commodity_group',
-    label: 'Commodity group'
+    label: 'Commodity group',
   },
   {
     name: 'broker',
-    label: 'Broker'
+    label: 'Broker',
   },
 ]
 
 export default async function Deals() {
-  const request = await fetchWithToken('/deals', { queryParams: { scenario: 'datatable' } })
+  const request = await fetchWithToken('/deals', {
+    queryParams: { scenario: 'datatable' },
+  })
   const deals = await request.json()
-  const headers = tableHeaders.map(header => (<th key={header.name}>{header.label}</th>))
+  const headers = tableHeaders.map((header) => (
+    <th key={header.name}>{header.label}</th>
+  ))
 
-  const dealRows = deals.map(deal => (
-    <tr key={deal.id}>{tableHeaders.map(
-      header =>  {
-        if (header.name === 'counterparty') return (
-          <td key={`${deal.id}-${header.name}`}>{deal[header.name].name}</td>
-        )
+  const dealRows = deals.map((deal) => (
+    <tr key={deal.id}>
+      {tableHeaders.map((header) => {
+        if (header.name === 'counterparty')
+          return (
+            <td key={`${deal.id}-${header.name}`}>{deal[header.name].name}</td>
+          )
 
         if (header.name === 'trade_date') {
           const date = new Date(deal[header.name])
-          return (<td key={`${deal.id}-${header.name}`}>{date.toLocaleDateString()}</td>)
+          return (
+            <td key={`${deal.id}-${header.name}`}>
+              {date.toLocaleDateString()}
+            </td>
+          )
         }
 
-        return (
-          <td key={`${deal.id}-${header.name}`}>{deal[header.name]}</td>
-        )
-      })}</tr>
+        return <td key={`${deal.id}-${header.name}`}>{deal[header.name]}</td>
+      })}
+    </tr>
   ))
 
   return (
@@ -75,13 +83,9 @@ export default async function Deals() {
       <h1>Deals</h1>
       <table>
         <thead>
-          <tr>
-            {headers}
-          </tr>
+          <tr>{headers}</tr>
         </thead>
-        <tbody>
-          {dealRows}
-        </tbody>
+        <tbody>{dealRows}</tbody>
       </table>
     </>
   )

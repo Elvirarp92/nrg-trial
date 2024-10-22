@@ -1,4 +1,4 @@
-describe("Navbar", () => {
+describe('Navbar', () => {
   it('does not show staff routes to normal users', () => {
     cy.log('Logging in as normal user')
     cy.loginByForm(Cypress.env('USER'), Cypress.env('PW'))
@@ -16,5 +16,4 @@ describe("Navbar", () => {
     cy.get('a[data-cy=Deals]').should('exist')
     cy.get('a[data-cy=Users]').should('exist')
   })
-
 })

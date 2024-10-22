@@ -1,5 +1,5 @@
-import { getServerSession } from "next-auth"
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
 export enum HttpMethod {
   GET = 'GET',
@@ -11,24 +11,29 @@ export enum HttpMethod {
 }
 
 export interface RequestOptions {
-  method?: HttpMethod,
-  body?: object,
+  method?: HttpMethod
+  body?: object
   queryParams?: string | string[][] | Record<string, string>
 }
 
-export default async function fetchWithToken(relativeUrl: string, options: RequestOptions): Promise<Response> {
+export default async function fetchWithToken(
+  relativeUrl: string,
+  options: RequestOptions,
+): Promise<Response> {
   const { method = HttpMethod.GET, body, queryParams } = { ...options }
   const session = await getServerSession(authOptions)
   const headers = {
-    "Content-Type": "application/json",
-    "Authorization": `Token ${session?.accessToken}`
+    'Content-Type': 'application/json',
+    Authorization: `Token ${session?.accessToken}`,
   }
-  const searchParams = new URLSearchParams(queryParams);
-  const fullUrl = new URL(`${process.env.API_URL}${relativeUrl}/?${searchParams.toString()}`)
+  const searchParams = new URLSearchParams(queryParams)
+  const fullUrl = new URL(
+    `${process.env.API_URL}${relativeUrl}/?${searchParams.toString()}`,
+  )
 
   const config: RequestInit = {
     method,
-    headers
+    headers,
   }
 
   if (![HttpMethod.GET, HttpMethod.HEAD].includes(method) && !!body) {
