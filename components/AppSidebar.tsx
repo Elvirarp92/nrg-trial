@@ -40,7 +40,6 @@ export async function AppSidebar() {
       </SidebarMenuItem>
     ))
 
-  console.log(links)
   return (
     <Sidebar>
       <SidebarHeader>Links</SidebarHeader>
