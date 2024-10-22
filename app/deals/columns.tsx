@@ -29,6 +29,10 @@ export const dealsColumns: ColumnDef<TableDeal>[] = [
   {
     accessorKey: 'trade_date',
     header: 'Trade date',
+    cell: ({ row }) => {
+      const tradeDate: Date = new Date(row.getValue('trade_date'))
+      return <span>{tradeDate.toLocaleDateString()}</span>
+    },
   },
   {
     accessorKey: 'status',
