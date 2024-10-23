@@ -60,3 +60,10 @@ export type Deal = {
   created_at: string
   updated_at: string
 }
+
+export type User = {
+  id: string
+  username: string
+  groups: number[]
+  is_staff: boolean
+}
