@@ -36,7 +36,7 @@ const getDealStatusLabel = (status: DealStatus): string =>
   dealStatusLabels[status]
 const getDealProposedToLabel = (proposedTo: DealProposedTo): string =>
   dealProposedToLabels[proposedTo]
-const getDealBillingLabels = (billing: DealBilling): string =>
+const getDealBillingLabel = (billing: DealBilling): string =>
   dealBillingLabels[billing]
 const getDealSenseLabel = (sense: DealSense): string => dealSenseLabels[sense]
 
@@ -61,7 +61,7 @@ export default async function Deal({ params }: { params: { id: string } }) {
           {getDealProposedToLabel(deal.proposed_to as DealProposedTo)}
         </li>
         <li>
-          <b>Billing:</b> {getDealBillingLabels(deal.is_billing)}
+          <b>Billing:</b> {getDealBillingLabel(deal.is_billing)}
         </li>
       </ul>
       <h2>Deal details</h2>
