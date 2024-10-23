@@ -18,7 +18,7 @@ export interface RequestOptions {
 
 export default async function fetchWithToken(
   relativeUrl: string,
-  options: RequestOptions,
+  options?: RequestOptions,
 ): Promise<Response> {
   const { method = HttpMethod.GET, body, queryParams } = { ...options }
   const session = await getServerSession(authOptions)
