@@ -3,7 +3,11 @@ import { DataTable } from '@/components/ui/data-table'
 import { dealsColumns } from './columns'
 import DealsFilter from './filter'
 
-export default async function Deals({ searchParams }) {
+export default async function Deals({
+  searchParams,
+}: {
+  searchParams: URLSearchParams
+}) {
   const request = await fetchWithToken('/deals', {
     queryParams: { scenario: 'datatable', ...searchParams },
   })

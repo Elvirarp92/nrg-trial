@@ -13,7 +13,7 @@ export enum HttpMethod {
 export interface RequestOptions {
   method?: HttpMethod
   body?: object
-  queryParams?: string | string[][] | Record<string, string>
+  queryParams?: string | string[][] | Record<string, string> | URLSearchParams
 }
 
 export default async function fetchWithToken(
