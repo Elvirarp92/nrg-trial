@@ -1,5 +1,6 @@
 import fetchWithToken from '@/utils/fetchWithToken'
 import { DataTable } from '@/components/ui/data-table'
+import { TableDeal } from '@/types/apiTypes'
 import { dealsColumns } from './columns'
 import DealsFilter from './filter'
 
@@ -11,7 +12,7 @@ export default async function Deals({
   const request = await fetchWithToken('/deals', {
     queryParams: { scenario: 'datatable', ...searchParams },
   })
-  const deals = await request.json()
+  const deals: TableDeal[] = await request.json()
 
   return (
     <>

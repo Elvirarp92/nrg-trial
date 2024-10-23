@@ -19,7 +19,16 @@ export type Counterparty = {
   about?: null
 }
 
+export type CommodityGroup = {
+  id: number
+  name: string
+  short_name: string
+  measurement_unit: string
+  df_rounding: number
+}
+
 export type TableDeal = {
+  /* Deals as returned by /deals?scenario=datatable */
   id: string
   code: string
   trade_date: string
@@ -32,4 +41,22 @@ export type TableDeal = {
   counterparty: Counterparty
   commodity_group: string
   broker: string
+}
+
+export type Deal = {
+  id: string
+  counterparty: Counterparty
+  commodity_group: CommodityGroup
+  broker: string
+  code: string
+  trade_date: string
+  status: DealStatus
+  proposed_to: DealProposedTo
+  sense: DealSense
+  volume: number
+  fixed_price: number
+  is_billing: DealBilling
+  is_deleted: boolean
+  created_at: string
+  updated_at: string
 }

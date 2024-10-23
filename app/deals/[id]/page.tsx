@@ -1,5 +1,6 @@
 import fetchWithToken from '@/utils/fetchWithToken'
 import NotFound from '@/app/not-found'
+import { Deal as DealType } from '@/types/apiTypes'
 import {
   getDealStatusLabel,
   getDealProposedToLabel,
@@ -9,7 +10,7 @@ import {
 
 export default async function Deal({ params }: { params: { id: string } }) {
   const request = await fetchWithToken(`/deals/${params.id}`)
-  const deal = await request.json()
+  const deal: DealType = await request.json()
 
   if (request.status === 404) return <NotFound />
 
