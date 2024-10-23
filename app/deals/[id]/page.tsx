@@ -55,6 +55,9 @@ export default async function Deal({ params }: { params: { id: string } }) {
           <b>Volume:</b> {deal.volume} {deal.commodity_group.measurement_unit}
         </li>
         <li>
+          <b>Fixed price:</b> {deal.fixed_price}
+        </li>
+        <li>
           <b>Trade date:</b> {tradeDate.toLocaleDateString()}
         </li>
         <li>
