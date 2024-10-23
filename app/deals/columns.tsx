@@ -1,5 +1,6 @@
 'use client'
 import { ColumnDef } from '@tanstack/react-table'
+import Link from 'next/link'
 type Counterparty = {
   id: number
   name: string
@@ -25,6 +26,11 @@ export const dealsColumns: ColumnDef<TableDeal>[] = [
   {
     accessorKey: 'code',
     header: 'Code',
+    cell: ({ row }) => {
+      const id: string = row.original.id
+      const code: string = row.getValue('code')
+      return <Link href={`/deals/${id}`}>{code}</Link>
+    },
   },
   {
     accessorKey: 'trade_date',
