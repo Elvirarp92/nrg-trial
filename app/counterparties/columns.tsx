@@ -12,7 +12,14 @@ export const counterpartiesColumns: ColumnDef<Counterparty>[] = [
     cell: ({ row }) => {
       const id: number = row.original.id
       const name: string = row.getValue('name')
-      return <Link href={`/counterparties/${id}`}>{name}</Link>
+      return (
+        <Link
+          className='text-secondary'
+          href={`/counterparties/${id}`}
+        >
+          {name}
+        </Link>
+      )
     },
   },
   {

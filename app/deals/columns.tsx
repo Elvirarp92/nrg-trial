@@ -10,7 +10,14 @@ export const dealsColumns: ColumnDef<TableDeal>[] = [
     cell: ({ row }) => {
       const id: string = row.original.id
       const code: string = row.getValue('code')
-      return <Link href={`/deals/${id}`}>{code}</Link>
+      return (
+        <Link
+          className='text-secondary'
+          href={`/deals/${id}`}
+        >
+          {code}
+        </Link>
+      )
     },
   },
   {
@@ -51,7 +58,10 @@ export const dealsColumns: ColumnDef<TableDeal>[] = [
     cell: ({ row }) => {
       const counterparty: Counterparty = row.getValue('counterparty')
       return (
-        <Link href={`/counterparties/${counterparty.id}`}>
+        <Link
+          className='text-secondary'
+          href={`/counterparties/${counterparty.id}`}
+        >
           {counterparty.name}
         </Link>
       )
