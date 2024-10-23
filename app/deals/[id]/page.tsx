@@ -44,10 +44,21 @@ export default async function Deal({ params }: { params: { id: string } }) {
   return (
     <article className='grid gap-3'>
       <h1>{deal.code}</h1>
+      <h2>Status</h2>
       <ul>
         <li>
           <b>Status:</b> {getDealStatusLabel(deal.status as DealStatus)}
         </li>
+        <li>
+          <b>Proposed to:</b>{' '}
+          {getDealProposedToLabel(deal.proposed_to as DealProposedTo)}
+        </li>
+        <li>
+          <b>Billing:</b> {getDealBillingLabels(deal.is_billing)}
+        </li>
+      </ul>
+      <h2>Deal details</h2>
+      <ul>
         <li>
           <b>Commodity group:</b> {deal.commodity_group.name}
         </li>
@@ -59,13 +70,6 @@ export default async function Deal({ params }: { params: { id: string } }) {
         </li>
         <li>
           <b>Trade date:</b> {tradeDate.toLocaleDateString()}
-        </li>
-        <li>
-          <b>Proposed to:</b>{' '}
-          {getDealProposedToLabel(deal.proposed_to as DealProposedTo)}
-        </li>
-        <li>
-          <b>Billing:</b> {getDealBillingLabels(deal.is_billing)}
         </li>
       </ul>
       <h2>Involved parts</h2>
