@@ -1,4 +1,5 @@
 import {
+  CounterpartyType,
   DealStatus,
   DealProposedTo,
   DealBilling,
@@ -31,6 +32,12 @@ const dealSenseLabels: { [key in DealSense]: string } = {
   2: 'Sell',
 }
 
+const counterpartyTypeLabels: { [key in CounterpartyType]: string } = {
+  1: 'Client',
+  2: 'Market',
+  3: 'Otc',
+}
+
 export const getDealStatusLabel = (status: DealStatus): string =>
   dealStatusLabels[status]
 export const getDealProposedToLabel = (proposedTo: DealProposedTo): string =>
@@ -39,3 +46,5 @@ export const getDealBillingLabel = (billing: DealBilling): string =>
   dealBillingLabels[billing]
 export const getDealSenseLabel = (sense: DealSense): string =>
   dealSenseLabels[sense]
+export const getCounterpartyTypeLabel = (type: CounterpartyType) =>
+  counterpartyTypeLabels[type]

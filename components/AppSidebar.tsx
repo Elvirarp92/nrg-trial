@@ -1,4 +1,4 @@
-import { Handshake, Users } from 'lucide-react'
+import { Handshake, Users, HandCoins } from 'lucide-react'
 
 import {
   Sidebar,
@@ -16,6 +16,12 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 const pages = [
   { name: 'Deals', url: '/deals', isStaff: false, icon: Handshake },
   { name: 'Users', url: '/users', isStaff: true, icon: Users },
+  {
+    name: 'Counterparties',
+    url: '/counterparties',
+    isStaff: false,
+    icon: HandCoins,
+  },
 ]
 
 export async function AppSidebar() {
