@@ -67,3 +67,10 @@ export type User = {
   groups: number[]
   is_staff: boolean
 }
+
+export type Principal = {
+  id: number
+  name: string
+  short_name: string
+  about?: unknown
+}

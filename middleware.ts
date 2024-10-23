@@ -1,7 +1,7 @@
 import { withAuth } from 'next-auth/middleware'
 import { NextResponse } from 'next/server'
 
-const STAFF_ROUTES = ['/users']
+const STAFF_ROUTES = ['/users', '/principals']
 
 export default withAuth(function middleware(req) {
   if (
