@@ -4,6 +4,7 @@ import NotFound from '@/app/not-found'
 type DealStatus = 0 | 1 | 2
 type DealProposedTo = 0 | 1 | 2
 type DealBilling = 0 | 1 | 10 | 20 | 21 | 30
+type DealSense = 1 | 2
 
 const dealStatusLabels: { [key in DealStatus]: string } = {
   0: 'Inactive',
@@ -26,12 +27,18 @@ const dealBillingLabels: { [key in DealBilling]: string } = {
   30: 'Failed',
 }
 
+const dealSenseLabels: { [key in DealSense]: string } = {
+  1: 'Buy',
+  2: 'Sell',
+}
+
 const getDealStatusLabel = (status: DealStatus): string =>
   dealStatusLabels[status]
 const getDealProposedToLabel = (proposedTo: DealProposedTo): string =>
   dealProposedToLabels[proposedTo]
 const getDealBillingLabels = (billing: DealBilling): string =>
   dealBillingLabels[billing]
+const getDealSenseLabel = (sense: DealSense): string => dealSenseLabels[sense]
 
 export default async function Deal({ params }: { params: { id: string } }) {
   const request = await fetchWithToken(`/deals/${params.id}`)
@@ -59,6 +66,9 @@ export default async function Deal({ params }: { params: { id: string } }) {
       </ul>
       <h2>Deal details</h2>
       <ul>
+        <li>
+          <b>Sense:</b> {getDealSenseLabel(deal.sense)}
+        </li>
         <li>
           <b>Commodity group:</b> {deal.commodity_group.name}
         </li>
