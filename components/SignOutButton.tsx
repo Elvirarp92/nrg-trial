@@ -30,10 +30,9 @@ export default function Component() {
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger>
+        <TooltipTrigger asChild>
           <Button
             className='h-7 w-7'
-            asChild
             variant='ghost'
             size='icon'
             onClick={() => handleLogout()}
