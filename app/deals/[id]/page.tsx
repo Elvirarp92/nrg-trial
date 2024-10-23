@@ -1,4 +1,5 @@
 import fetchWithToken from '@/utils/fetchWithToken'
+import NotFound from '@/app/not-found'
 
 type DealStatus = 0 | 1 | 2
 type DealProposedTo = 0 | 1 | 2
@@ -35,6 +36,9 @@ const getDealBillingLabels = (billing: DealBilling): string =>
 export default async function Deal({ params }: { params: { id: string } }) {
   const request = await fetchWithToken(`/deals/${params.id}`)
   const deal = await request.json()
+
+  if (request.status === 404) return <NotFound />
+
   const tradeDate = new Date(deal.trade_date)
 
   return (
