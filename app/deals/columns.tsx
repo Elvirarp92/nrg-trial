@@ -50,7 +50,11 @@ export const dealsColumns: ColumnDef<TableDeal>[] = [
     header: 'Counterparty',
     cell: ({ row }) => {
       const counterparty: Counterparty = row.getValue('counterparty')
-      return <span>{counterparty.name}</span>
+      return (
+        <Link href={`/counterparties/${counterparty.id}`}>
+          {counterparty.name}
+        </Link>
+      )
     },
   },
   {

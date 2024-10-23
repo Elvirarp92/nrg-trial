@@ -1,6 +1,7 @@
 import fetchWithToken from '@/utils/fetchWithToken'
 import NotFound from '@/app/not-found'
 import { Deal as DealType } from '@/types/apiTypes'
+import Link from 'next/link'
 import {
   getDealStatusLabel,
   getDealProposedToLabel,
@@ -55,7 +56,10 @@ export default async function Deal({ params }: { params: { id: string } }) {
           <b>Broker:</b> {deal.broker}
         </li>
         <li>
-          <b>Counterparty:</b> {deal.counterparty.name}
+          <b>Counterparty:</b>{' '}
+          <Link href={`/counterparties/${deal.counterparty.id}`}>
+            {deal.counterparty.name}
+          </Link>
         </li>
       </ul>
     </article>
