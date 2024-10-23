@@ -14,8 +14,8 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
 const pages = [
-  { name: 'Deals', url: 'deals', isStaff: false, icon: Handshake },
-  { name: 'Users', url: 'users', isStaff: true, icon: Users },
+  { name: 'Deals', url: '/deals', isStaff: false, icon: Handshake },
+  { name: 'Users', url: '/users', isStaff: true, icon: Users },
 ]
 
 export async function AppSidebar() {
