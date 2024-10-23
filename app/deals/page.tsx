@@ -11,10 +11,12 @@ export default async function Deals() {
   return (
     <>
       <h1>Deals</h1>
-      <DataTable
-        columns={dealsColumns}
-        data={deals}
-      />
+      <div className='mt-6'>
+        <DataTable
+          columns={dealsColumns}
+          data={deals}
+        />
+      </div>
     </>
   )
 }
