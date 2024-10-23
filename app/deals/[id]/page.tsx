@@ -1,44 +1,11 @@
 import fetchWithToken from '@/utils/fetchWithToken'
 import NotFound from '@/app/not-found'
-
-type DealStatus = 0 | 1 | 2
-type DealProposedTo = 0 | 1 | 2
-type DealBilling = 0 | 1 | 10 | 20 | 21 | 30
-type DealSense = 1 | 2
-
-const dealStatusLabels: { [key in DealStatus]: string } = {
-  0: 'Inactive',
-  1: 'Unverified',
-  2: 'Verified',
-}
-
-const dealProposedToLabels: { [key in DealProposedTo]: string } = {
-  0: 'None',
-  1: 'Amend',
-  2: 'Delete',
-}
-
-const dealBillingLabels: { [key in DealBilling]: string } = {
-  0: 'None',
-  1: 'In Progress',
-  10: 'Completed',
-  20: 'Cancelled',
-  21: 'Rejected',
-  30: 'Failed',
-}
-
-const dealSenseLabels: { [key in DealSense]: string } = {
-  1: 'Buy',
-  2: 'Sell',
-}
-
-const getDealStatusLabel = (status: DealStatus): string =>
-  dealStatusLabels[status]
-const getDealProposedToLabel = (proposedTo: DealProposedTo): string =>
-  dealProposedToLabels[proposedTo]
-const getDealBillingLabel = (billing: DealBilling): string =>
-  dealBillingLabels[billing]
-const getDealSenseLabel = (sense: DealSense): string => dealSenseLabels[sense]
+import {
+  getDealStatusLabel,
+  getDealProposedToLabel,
+  getDealBillingLabel,
+  getDealSenseLabel,
+} from '@/utils/apiEnumMappingFunctions'
 
 export default async function Deal({ params }: { params: { id: string } }) {
   const request = await fetchWithToken(`/deals/${params.id}`)
@@ -54,11 +21,10 @@ export default async function Deal({ params }: { params: { id: string } }) {
       <h2>Status</h2>
       <ul>
         <li>
-          <b>Status:</b> {getDealStatusLabel(deal.status as DealStatus)}
+          <b>Status:</b> {getDealStatusLabel(deal.status)}
         </li>
         <li>
-          <b>Proposed to:</b>{' '}
-          {getDealProposedToLabel(deal.proposed_to as DealProposedTo)}
+          <b>Proposed to:</b> {getDealProposedToLabel(deal.proposed_to)}
         </li>
         <li>
           <b>Billing:</b> {getDealBillingLabel(deal.is_billing)}

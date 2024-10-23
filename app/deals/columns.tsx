@@ -1,26 +1,7 @@
 'use client'
 import { ColumnDef } from '@tanstack/react-table'
 import Link from 'next/link'
-type Counterparty = {
-  id: number
-  name: string
-  type: number
-}
-
-export type TableDeal = {
-  id: string
-  code: string
-  trade_date: string
-  status: 'Verified' | 'Unverified'
-  proposed_to: string
-  sense: 'Sell' | 'Buy'
-  volume: number
-  measurement_unit: string
-  fixed_price: number
-  counterparty: Counterparty
-  commodity_group: string
-  broker: string
-}
+import { Counterparty, TableDeal } from '@/types/apiTypes'
 
 export const dealsColumns: ColumnDef<TableDeal>[] = [
   {
