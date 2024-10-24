@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/sidebar'
 import Link from 'next/link'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions'
 
 const pages = [
   { name: 'Deals', url: '/deals', isStaff: false, icon: Handshake },
