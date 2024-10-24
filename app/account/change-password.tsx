@@ -7,6 +7,7 @@ import fetchWithTokenAction from '@/actions/fetchWithToken'
 import { HttpMethod } from '@/types/requestTypes'
 import { useToast } from '@/hooks/use-toast'
 import zxcvbn from 'zxcvbn'
+import { Eye, EyeClosed } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -19,6 +20,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Progress } from '@/components/ui/progress'
+import { useState } from 'react'
 
 const passwordUserInputs = ['nrg', 'consulting', 'nrgconsulting', 'energy']
 
@@ -47,7 +49,18 @@ export default function ChangePasswordForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   })
+
   const { toast } = useToast()
+
+  const [hidePassword, setHidePassword] = useState(true)
+  const [hidePasswordRepeat, setHidePasswordRepeat] = useState(true)
+
+  const handleHidePassword = () => {
+    setHidePassword(!hidePassword)
+  }
+  const handleHidePasswordRepeat = () => {
+    setHidePasswordRepeat(!hidePasswordRepeat)
+  }
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const { password } = values
@@ -93,12 +106,20 @@ export default function ChangePasswordForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input
-                  type='password'
-                  {...field}
-                />
-              </FormControl>
+              <div className='flex gap-1'>
+                <FormControl>
+                  <Input
+                    type={hidePassword ? 'password' : 'text'}
+                    {...field}
+                  />
+                </FormControl>
+                <Button
+                  variant='ghost'
+                  onClick={handleHidePassword}
+                >
+                  {hidePassword ? <Eye /> : <EyeClosed />}
+                </Button>
+              </div>
               <Progress
                 value={zxcvbn(field.value || '', passwordUserInputs).score * 25}
               />
@@ -112,12 +133,20 @@ export default function ChangePasswordForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Repeat password</FormLabel>
-              <FormControl>
-                <Input
-                  type='password'
-                  {...field}
-                />
-              </FormControl>
+              <div className='flex gap-1'>
+                <FormControl>
+                  <Input
+                    type={hidePasswordRepeat ? 'password' : 'text'}
+                    {...field}
+                  />
+                </FormControl>
+                <Button
+                  variant='ghost'
+                  onClick={handleHidePasswordRepeat}
+                >
+                  {hidePasswordRepeat ? <Eye /> : <EyeClosed />}
+                </Button>
+              </div>
               <FormMessage />
             </FormItem>
           )}
