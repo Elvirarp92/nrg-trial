@@ -1,24 +1,10 @@
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions'
-
-export enum HttpMethod {
-  GET = 'GET',
-  HEAD = 'HEAD',
-  POST = 'POST',
-  PUT = 'PUT',
-  PATCH = 'PATCH',
-  DELETE = 'DELETE',
-}
-
-export interface RequestOptions {
-  method?: HttpMethod
-  body?: object
-  queryParams?: string | string[][] | Record<string, string> | URLSearchParams
-}
+import { HttpMethod, RequestOptions } from '@/types/requestTypes'
 
 export default async function fetchWithToken(
   relativeUrl: string,
-  options?: RequestOptions,
+  options: RequestOptions = {},
 ): Promise<Response> {
   const { method = HttpMethod.GET, body, queryParams } = { ...options }
   const session = await getServerSession(authOptions)
