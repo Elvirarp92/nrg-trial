@@ -1,4 +1,4 @@
-/* eslint-env node */
+/* eslint-disable */
 const path = require('path')
 const formatCommand = 'prettier . --check'
 

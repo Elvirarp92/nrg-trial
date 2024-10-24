@@ -66,7 +66,7 @@ export default function ChangePasswordForm() {
     const { password } = values
 
     try {
-      const req = await fetchWithTokenAction('/auth/change_password', {
+      const req = await fetchWithTokenAction('/auth/change_passwor', {
         method: HttpMethod.POST,
         body: {
           password,
