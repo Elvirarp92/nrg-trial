@@ -3,6 +3,7 @@ import { SidebarProvider } from '@/components/ui/sidebar'
 
 import { AppSidebar } from '@/components/AppSidebar'
 import { AppHeader } from '@/components/AppHeader'
+import { Toaster } from '@/components/ui/toaster'
 
 import './globals.css'
 
@@ -28,6 +29,7 @@ export default async function RootLayout({
             </main>
           </div>
         </SidebarProvider>
+        <Toaster />
       </body>
     </html>
   )

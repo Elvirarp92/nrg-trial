@@ -1,5 +1,6 @@
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions'
+import ChangePasswordForm from './change-password'
 
 export default async function Me() {
   const session = await getServerSession(authOptions)
@@ -16,6 +17,8 @@ export default async function Me() {
           <b>Staff:</b> {session?.isStaff ? 'Yes' : 'No'}
         </li>
       </ul>
+      <h2>Change password</h2>
+      <ChangePasswordForm />
     </article>
   )
 }

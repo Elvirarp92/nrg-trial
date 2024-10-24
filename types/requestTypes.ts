@@ -12,3 +12,9 @@ export interface RequestOptions {
   body?: object
   queryParams?: string | string[][] | Record<string, string> | URLSearchParams
 }
+
+export interface ClientResponse {
+  status: number
+  ok: boolean
+  body?: object
+}
