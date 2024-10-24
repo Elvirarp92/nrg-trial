@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import fetchWithTokenAction from '@/actions/fetchWithToken'
 import { HttpMethod } from '@/types/requestTypes'
 import { useToast } from '@/hooks/use-toast'
-import zxcvbn from 'zxcvbn'
+import zxcvbn from 'zxcvbn-typescript'
 import { Eye, EyeClosed } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
