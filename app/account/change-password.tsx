@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 import fetchWithTokenAction from '@/actions/fetchWithToken'
 import { HttpMethod } from '@/types/requestTypes'
 import { useToast } from '@/hooks/use-toast'
+import zxcvbn from 'zxcvbn'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -18,6 +19,8 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
+const passwordUserInputs = ['nrg', 'consulting', 'nrgconsulting', 'energy']
+
 const formSchema = z
   .object({
     password: z.string().min(8),
@@ -26,6 +29,17 @@ const formSchema = z
   .refine((data) => data.password === data.repeatPassword, {
     message: 'Passwords must match',
     path: ['repeatPassword'],
+  })
+  .superRefine((data, ctx) => {
+    const passwordStrengthTest = zxcvbn(data.password, passwordUserInputs)
+    console.log(passwordStrengthTest)
+    if (passwordStrengthTest.score < 3) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: `Password too weak. ${passwordStrengthTest.feedback?.warning}`,
+        path: ['password'],
+      })
+    }
   })
 
 export default function ChangePasswordForm() {
