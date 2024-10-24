@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { Progress } from '@/components/ui/progress'
 
 const passwordUserInputs = ['nrg', 'consulting', 'nrgconsulting', 'energy']
 
@@ -98,6 +99,9 @@ export default function ChangePasswordForm() {
                   {...field}
                 />
               </FormControl>
+              <Progress
+                value={zxcvbn(field.value || '', passwordUserInputs).score * 25}
+              />
               <FormMessage />
             </FormItem>
           )}
