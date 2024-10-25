@@ -35,7 +35,6 @@ const formSchema = z
   })
   .superRefine((data, ctx) => {
     const passwordStrengthTest = zxcvbn(data.password, passwordUserInputs)
-    console.log(passwordStrengthTest)
     if (passwordStrengthTest.score < 3) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,

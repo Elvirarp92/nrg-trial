@@ -7,10 +7,6 @@ export default async function Principals() {
   const request = await fetchWithToken('/deals/principal')
   const principals: Principal[] = await request.json()
 
-  const theOtherRequest = await fetchWithToken('/deals/principal/1')
-  const prin: Principal = await theOtherRequest.json()
-  console.log(prin)
-
   return (
     <>
       <h1>Principals</h1>
