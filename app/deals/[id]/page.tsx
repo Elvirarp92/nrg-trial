@@ -57,7 +57,10 @@ export default async function Deal({ params }: { params: { id: string } }) {
         </li>
         <li>
           <b>Counterparty:</b>{' '}
-          <Link href={`/counterparties/${deal.counterparty.id}`}>
+          <Link
+            className='text-secondary'
+            href={`/counterparties/${deal.counterparty.id}`}
+          >
             {deal.counterparty.name}
           </Link>
         </li>
