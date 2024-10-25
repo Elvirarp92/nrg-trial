@@ -1,5 +1,6 @@
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import AppHeaderAccountLink from '@/components/AppHeaderAccountLink'
+import AppHeaderThemeToggle from '@/components/AppHeaderThemeToggle'
 import Link from 'next/link'
 import SignOutButton from '@/components/SignOutButton'
 
@@ -13,6 +14,7 @@ export function AppHeader() {
       >
         NRG Deal Manager
       </Link>
+      <AppHeaderThemeToggle />
       <AppHeaderAccountLink />
       <SignOutButton />
     </header>
